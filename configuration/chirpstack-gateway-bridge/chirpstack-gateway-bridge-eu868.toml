@@ -1,0 +1,20 @@
+# ChirpStack Gateway Bridge Configuration - EU868 Region (UDP)
+
+# MQTT Authentication
+[integration.mqtt.auth.generic]
+servers=["tcp://mosquitto:1883"]
+username=""
+password=""
+
+# MQTT Topics
+[integration.mqtt]
+event_topic_template="eu868/gateway/{{ .GatewayID }}/event/{{ .EventType }}"
+state_topic_template="eu868/gateway/{{ .GatewayID }}/state/{{ .StateType }}"
+command_topic_template="eu868/gateway/{{ .GatewayID }}/command/#"
+
+# Backend Configuration
+[backend]
+type="semtech_udp"
+
+  [backend.semtech_udp]
+  udp_bind=":1700"
